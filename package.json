@@ -1,14 +1,22 @@
 {
-  "name": "swear-trek-slack-bot",
+  "name": "swear-trek-slack",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "author": "Ben Youngblood <bx.youngblood@gmail.com>",
+  "description": "Get a random Swear Trek in Slack via a slash command",
+  "keywords": ["swear", "trek", "slack", "slash", "command"],
+  "main": "dist/index.js",
   "scripts": {
     "postinstall": "tsc -p .",
-    "start": "node index.js",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bjyoungblood/swear-trek-slack"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "license": "ISC",
   "dependencies": {
     "@slack/client": "^3.15.0",

@@ -9,6 +9,7 @@ const {
   SLACK_TOKEN,
   TUMBLR_KEY,
   HEROKU_APP_NAME,
+  PORT = 3000,
 } = process.env;
 
 const tumblr = createClient();
@@ -52,9 +53,10 @@ app.post('/slack', (req, res, next) => {
   const opts = {
     api_key: TUMBLR_KEY,
     limit: 1,
-    type: 'photo',
-    offset: numPosts - 1,
+    offset: random(0, numPosts - 1),
   };
+
+  console.log('offset: ', numPosts - 1);
 
   tumblr.blogPosts('sweartrek.tumblr.com', opts, (err: any, resp: any) => {
     if (err) {
@@ -69,12 +71,18 @@ app.post('/slack', (req, res, next) => {
     }
 
     const post = resp.posts[0];
+    if (! post) {
+      console.log(resp);
+      return;
+    }
     res.send({
       response_type: 'in_channel',
       attachments: [
         {
-          text: post.summary,
+          title: post.summary,
+          title_link: post.post_url,
           image_url: post.photos[0].original_size.url,
+          ts: post.timestamp,
         },
       ],
     });
@@ -84,6 +92,6 @@ app.post('/slack', (req, res, next) => {
 
 updateNumPosts();
 
-const server = app.listen(3000, () => {
+const server = app.listen(PORT, () => {
   console.log('express server listening on port %d', server.address().port);
 });
