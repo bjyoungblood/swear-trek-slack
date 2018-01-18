@@ -44,7 +44,7 @@ app.get('/', (req, res, next) => {
 });
 
 app.post('/slack', (req, res, next) => {
-  if (!req.body.token || req.body.token !== SLACK_TOKEN) {
+  if (SLACK_TOKEN && (!req.body.token || req.body.token !== SLACK_TOKEN)) {
     res.status(500);
     res.send({ error: 'unable to verify slack token' });
     return;
