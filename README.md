@@ -1,4 +1,4 @@
-# Swear Trek Slack Slash Command
+# [Swear Trek](https://twitter.com/swear_trek) Slack Slash Command
 
 ## aka the new reason you're not getting your work done
 
