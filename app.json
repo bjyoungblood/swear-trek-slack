@@ -1,0 +1,24 @@
+{
+  "name": "swear-trek-slack",
+  "description": "Get a random Swear Trek in Slack via a slash command",
+  "repository": "https://github.com/bjyoungblood/swear-trek-slack-command",
+  "keywords": ["swear", "trek", "slack", "slash", "command"],
+  "env": {
+    "TUMBLR_KEY": {
+      "description": "Tumblr API OAuth Consumer Key (see https://www.tumblr.com/docs/en/api/v2#auth)."
+    },
+    "SLACK_TOKEN": {
+      "description": "The Slack slash command token is used to verify that requests come from Slack. If this variable is not set, all requests will be considered valid.",
+      "required": false
+    },
+    "HEROKU_APP_NAME": {
+      "description": "The name of the Heroku app (e.g., <HEROKU_APP_NAME>.herokuapp.com minus .herokuapp.com). If set, this keeps free dynos active (but keep the quota in mind: https://devcenter.heroku.com/articles/free-dyno-hours).",
+      "required": false
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
